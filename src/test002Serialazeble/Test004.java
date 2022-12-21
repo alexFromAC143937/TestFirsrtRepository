@@ -7,11 +7,7 @@ public class Test004 {
         System.out.println("main start");
         Daemon daemon = new Daemon();
         daemon.start();
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+
         System.out.println("main end");
     }
 }
@@ -22,8 +18,13 @@ class Daemon extends Thread {
     public void run() {
         System.out.println("Daemon0 starts");
         Daemon1 d = new Daemon1();
-      //  d.setDaemon(true);   //// TODO If you need Daemon
+        d.setDaemon(true);   //// TODO If you need Daemon
         d.start();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         System.out.println("Daemon0 ends");
     }
 
